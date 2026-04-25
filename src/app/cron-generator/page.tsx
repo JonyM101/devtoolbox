@@ -2,6 +2,68 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { ToolPageLayout } from "@/components/ToolPageLayout";
+import { JsonLd } from "@/components/JsonLd";
+
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
+
+const cronSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Cron Expression Generator",
+  url: `${SITE_URL}/cron-generator`,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free online cron expression generator and visualizer. Build, understand, and test cron expressions with presets and next run time preview.",
+  featureList: [
+    "Visual cron expression builder",
+    "Common preset templates",
+    "Human-readable expression description",
+    "Next 5 run time preview",
+    "Custom expression input",
+    "Copy expression to clipboard",
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is a cron expression?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A cron expression is a string of five fields separated by spaces that represents a schedule in Unix-like operating systems. The fields are: minute (0-59), hour (0-23), day of month (1-31), month (1-12), and day of week (0-6, where 0 is Sunday). For example, '0 9 * * 1-5' means 'at 9:00 AM, Monday through Friday'.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What do the special characters in cron mean?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Asterisk (*) means 'every' (every minute, every hour, etc.). Slash (/) specifies increments (*/15 means every 15 units). Comma (,) separates individual values (1,3,5). Hyphen (-) specifies ranges (1-5 means 1 through 5). Question mark (?) is used in some implementations to mean 'any' for day fields.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the difference between 5-field and 6-field cron?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Standard Unix cron uses 5 fields (minute hour day month weekday). Some systems like Spring, Quartz, and AWS EventBridge use 6 or 7 fields, adding seconds and/or year at the beginning. This tool generates standard 5-field cron expressions.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do I run a cron job every N minutes?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Use the slash notation: */5 * * * * runs every 5 minutes, */15 * * * * runs every 15 minutes, */30 * * * * runs every 30 minutes. The first field (minute) uses */N where N is the interval in minutes.",
+      },
+    },
+  ],
+};
 
 const FIELDS = [
   { name: "Minute", range: "0-59" },
@@ -249,6 +311,59 @@ export default function CronGeneratorPage() {
           )}
         </div>
       </div>
+
+      {/* Schema.org Structured Data */}
+      <JsonLd data={cronSchema} />
+      <JsonLd data={faqSchema} />
+
+      {/* SEO Content Section */}
+      <section className="mt-12 space-y-8">
+        <h2 className="text-xl font-bold">About Cron Expression Generator</h2>
+        <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Our free online cron expression generator helps you build, understand, and test cron schedules
+          visually. Choose from common presets, customize individual fields, or type a custom expression —
+          the tool instantly shows a human-readable description and the next 5 run times. Perfect for
+          configuring Linux crontab, Kubernetes CronJobs, AWS EventBridge, GitHub Actions, and more.
+        </p>
+
+        <h2 className="text-xl font-bold">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold mb-1">What is a cron expression?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              A cron expression is a string of five fields separated by spaces that represents a schedule in
+              Unix-like operating systems. The fields are: minute (0-59), hour (0-23), day of month (1-31),
+              month (1-12), and day of week (0-6, where 0 is Sunday). For example, &quot;0 9 * * 1-5&quot; means
+              &quot;at 9:00 AM, Monday through Friday&quot;.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What do the special characters in cron mean?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Asterisk (*) means &quot;every&quot; (every minute, every hour, etc.). Slash (/) specifies increments
+              (*/15 means every 15 units). Comma (,) separates individual values (1,3,5). Hyphen (-) specifies
+              ranges (1-5 means 1 through 5). Question mark (?) is used in some implementations to mean
+              &quot;any&quot; for day fields.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What is the difference between 5-field and 6-field cron?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Standard Unix cron uses 5 fields (minute hour day month weekday). Some systems like Spring,
+              Quartz, and AWS EventBridge use 6 or 7 fields, adding seconds and/or year at the beginning.
+              This tool generates standard 5-field cron expressions.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">How do I run a cron job every N minutes?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Use the slash notation: */5 * * * * runs every 5 minutes, */15 * * * * runs every 15 minutes,
+              */30 * * * * runs every 30 minutes. The first field (minute) uses */N where N is the interval
+              in minutes.
+            </p>
+          </div>
+        </div>
+      </section>
     </ToolPageLayout>
   );
 }

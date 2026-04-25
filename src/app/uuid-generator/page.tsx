@@ -2,6 +2,68 @@
 
 import { useState, useCallback } from "react";
 import { ToolPageLayout } from "@/components/ToolPageLayout";
+import { JsonLd } from "@/components/JsonLd";
+
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
+
+const uuidSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "UUID Generator",
+  url: `${SITE_URL}/uuid-generator`,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free online UUID v4 generator. Create random UUIDs in bulk with lowercase, uppercase, or no-dash formats.",
+  featureList: [
+    "Generate UUID v4 (random) identifiers",
+    "Bulk generation up to 100 UUIDs at once",
+    "Lowercase, uppercase, and no-dash formats",
+    "One-click copy individual or all UUIDs",
+    "Cryptographically secure random generation",
+    "No server-side processing — all in browser",
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is a UUID?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A UUID (Universally Unique Identifier) is a 128-bit identifier standard defined by RFC 4122. It is designed to be unique across both space and time without requiring a central coordination mechanism. The most common version is UUID v4, which uses random numbers.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What is the difference between UUID v1 and v4?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "UUID v1 is generated using the machine's MAC address and timestamp, making it sequentially sortable but potentially revealing host information. UUID v4 uses random numbers, providing better privacy and no sequential pattern, but cannot be sorted by creation time.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Are UUIDs guaranteed to be unique?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "While UUIDs are not 100% guaranteed to be unique, the probability of collision is astronomically small. For UUID v4, the chance of generating a duplicate is about 1 in 2.71 × 10^18. In practice, you can treat UUIDs as unique for any realistic application.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What are UUIDs used for?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "UUIDs are commonly used as database primary keys, session identifiers, file names, message IDs, and anywhere you need a unique identifier without coordination between systems. They are especially useful in distributed systems where auto-incrementing IDs would conflict.",
+      },
+    },
+  ],
+};
 
 function generateUUID(): string {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -123,6 +185,57 @@ export default function UuidGeneratorPage() {
           </div>
         )}
       </div>
+
+      {/* Schema.org Structured Data */}
+      <JsonLd data={uuidSchema} />
+      <JsonLd data={faqSchema} />
+
+      {/* SEO Content Section */}
+      <section className="mt-12 space-y-8">
+        <h2 className="text-xl font-bold">About UUID Generator</h2>
+        <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Our free online UUID generator creates cryptographically secure UUID v4 identifiers for your
+          applications. Generate up to 100 UUIDs at once in lowercase, uppercase, or no-dash formats.
+          Perfect for database primary keys, session tokens, and distributed system identifiers. All
+          generation happens in your browser using the Web Crypto API.
+        </p>
+
+        <h2 className="text-xl font-bold">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold mb-1">What is a UUID?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              A UUID (Universally Unique Identifier) is a 128-bit identifier standard defined by RFC 4122.
+              It is designed to be unique across both space and time without requiring a central coordination
+              mechanism. The most common version is UUID v4, which uses random numbers.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What is the difference between UUID v1 and v4?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              UUID v1 is generated using the machine&apos;s MAC address and timestamp, making it sequentially
+              sortable but potentially revealing host information. UUID v4 uses random numbers, providing
+              better privacy and no sequential pattern, but cannot be sorted by creation time.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">Are UUIDs guaranteed to be unique?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              While UUIDs are not 100% guaranteed to be unique, the probability of collision is astronomically
+              small. For UUID v4, the chance of generating a duplicate is about 1 in 2.71 × 10^18. In practice,
+              you can treat UUIDs as unique for any realistic application.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What are UUIDs used for?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              UUIDs are commonly used as database primary keys, session identifiers, file names, message IDs,
+              and anywhere you need a unique identifier without coordination between systems. They are especially
+              useful in distributed systems where auto-incrementing IDs would conflict.
+            </p>
+          </div>
+        </div>
+      </section>
     </ToolPageLayout>
   );
 }

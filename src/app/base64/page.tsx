@@ -2,6 +2,68 @@
 
 import { useState, useCallback } from "react";
 import { ToolPageLayout } from "@/components/ToolPageLayout";
+import { JsonLd } from "@/components/JsonLd";
+
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
+
+const base64Schema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Base64 Encoder / Decoder",
+  url: `${SITE_URL}/base64`,
+  applicationCategory: "DeveloperApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free online Base64 encoder and decoder. Convert text to Base64 or decode Base64 strings with full UTF-8 support.",
+  featureList: [
+    "Encode text to Base64 format",
+    "Decode Base64 strings to plain text",
+    "Full UTF-8 character support",
+    "One-click swap between encode and decode",
+    "Copy output to clipboard",
+    "All processing happens in your browser",
+  ],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is Base64 encoding?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Base64 is a binary-to-text encoding scheme that represents binary data using a set of 64 printable ASCII characters (A-Z, a-z, 0-9, +, /). It is commonly used to encode data for transmission over media designed to handle text, such as email or JSON payloads.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "When should I use Base64 encoding?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Base64 encoding is useful when you need to embed binary data (like images or files) in text-based formats such as HTML, CSS, JSON, or XML. It is also used in email attachments (MIME), data URLs, and authentication headers (HTTP Basic Auth).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does Base64 encoding encrypt my data?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No, Base64 is an encoding scheme, not encryption. It does not provide any security or data protection. Anyone can easily decode Base64 strings. Never use Base64 as a substitute for encryption.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Does this tool support UTF-8 characters?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes, this tool fully supports UTF-8 encoding. You can encode and decode text containing international characters, emojis, and other Unicode characters without issues.",
+      },
+    },
+  ],
+};
 
 export default function Base64Page() {
   const [input, setInput] = useState("");
@@ -145,6 +207,56 @@ export default function Base64Page() {
           </div>
         </div>
       </div>
+
+      {/* Schema.org Structured Data */}
+      <JsonLd data={base64Schema} />
+      <JsonLd data={faqSchema} />
+
+      {/* SEO Content Section */}
+      <section className="mt-12 space-y-8">
+        <h2 className="text-xl font-bold">About Base64 Encoder / Decoder</h2>
+        <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          Our free online Base64 encoder and decoder lets you quickly convert between plain text and
+          Base64 format. Whether you&apos;re working with data URIs, email attachments, API payloads,
+          or authentication headers, this tool handles it all with full UTF-8 support. All processing
+          happens locally in your browser — your data is never sent to any server.
+        </p>
+
+        <h2 className="text-xl font-bold">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          <div>
+            <h3 className="font-semibold mb-1">What is Base64 encoding?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Base64 is a binary-to-text encoding scheme that represents binary data using a set of 64
+              printable ASCII characters (A-Z, a-z, 0-9, +, /). It is commonly used to encode data for
+              transmission over media designed to handle text, such as email or JSON payloads.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">When should I use Base64 encoding?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Base64 encoding is useful when you need to embed binary data (like images or files) in
+              text-based formats such as HTML, CSS, JSON, or XML. It is also used in email attachments
+              (MIME), data URLs, and authentication headers (HTTP Basic Auth).
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">Does Base64 encoding encrypt my data?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              No, Base64 is an encoding scheme, not encryption. It does not provide any security or data
+              protection. Anyone can easily decode Base64 strings. Never use Base64 as a substitute for
+              encryption.
+            </p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">Does this tool support UTF-8 characters?</h3>
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              Yes, this tool fully supports UTF-8 encoding. You can encode and decode text containing
+              international characters, emojis, and other Unicode characters without issues.
+            </p>
+          </div>
+        </div>
+      </section>
     </ToolPageLayout>
   );
 }
