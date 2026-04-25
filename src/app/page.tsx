@@ -1,65 +1,109 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const tools = [
+  {
+    name: "JSON Formatter",
+    description: "Format, validate, and beautify JSON data with syntax highlighting",
+    href: "/json-formatter",
+    icon: "{ }",
+    color: "bg-amber-50 text-amber-600 dark:bg-amber-950 dark:text-amber-400",
+  },
+  {
+    name: "Base64 Encoder/Decoder",
+    description: "Encode text to Base64 or decode Base64 strings instantly",
+    href: "/base64",
+    icon: "B64",
+    color: "bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400",
+  },
+  {
+    name: "UUID Generator",
+    description: "Generate random UUIDs (v4) in bulk for your applications",
+    href: "/uuid-generator",
+    icon: "UID",
+    color: "bg-green-50 text-green-600 dark:bg-green-950 dark:text-green-400",
+  },
+  {
+    name: "Cron Expression Generator",
+    description: "Build and understand cron expressions with a visual helper",
+    href: "/cron-generator",
+    icon: "⏰",
+    color: "bg-purple-50 text-purple-600 dark:bg-purple-950 dark:text-purple-400",
+  },
+  {
+    name: "Regex Tester",
+    description: "Test regular expressions with real-time matching and group capture",
+    href: "/regex-tester",
+    icon: ".*+",
+    color: "bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-400",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Hero */}
+      <section className="text-center mb-16">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+          Developer Toolbox
+        </h1>
+        <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+          Free, fast, and privacy-friendly online tools for everyday coding tasks.
+          No signup. No tracking. Works offline.
+        </p>
+      </section>
+
+      {/* Tools Grid */}
+      <section>
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-6">
+          All Tools
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {tools.map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group block rounded-xl border border-card-border bg-card-bg p-6 transition-all hover:shadow-lg hover:border-primary/40 hover:-translate-y-0.5"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div
+                className={`inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold mb-3 ${tool.color}`}
+              >
+                {tool.icon}
+              </div>
+              <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+                {tool.name}
+              </h3>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {tool.description}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+        <div>
+          <div className="text-2xl mb-2">🔒</div>
+          <h3 className="font-semibold mb-1">Privacy First</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            All processing happens in your browser. No data sent to servers.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div>
+          <div className="text-2xl mb-2">⚡</div>
+          <h3 className="font-semibold mb-1">Lightning Fast</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            No server roundtrips. Instant results as you type.
+          </p>
         </div>
-      </main>
+        <div>
+          <div className="text-2xl mb-2">📱</div>
+          <h3 className="font-semibold mb-1">Works Everywhere</h3>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Responsive design that works on desktop, tablet, and mobile.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
