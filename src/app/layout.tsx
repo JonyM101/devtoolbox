@@ -82,6 +82,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "CD_qK1jTsLyaaJcoHAeZfvoTP1WJxOvF1kNXLz59Md4",
+  },
 };
 
 // Schema.org structured data for the website
