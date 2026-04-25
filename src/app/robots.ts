@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://devtoolbox.dev/sitemap.xml",
+    sitemap: "https://devtoolbox-ivory.vercel.app/sitemap.xml",
   };
 }

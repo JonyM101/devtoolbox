@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = "https://devtoolbox.dev";
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
 export const metadata: Metadata = {
   title: "JSON Formatter - Beautify, Validate & Minify JSON Online Free",

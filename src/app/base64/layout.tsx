@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = "https://devtoolbox.dev";
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
 export const metadata: Metadata = {
   title: "Base64 Encoder/Decoder - Encode & Decode Base64 Strings Online Free",

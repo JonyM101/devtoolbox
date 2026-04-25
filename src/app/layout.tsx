@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://devtoolbox.dev";
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

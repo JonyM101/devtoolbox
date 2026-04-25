@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = "https://devtoolbox.dev";
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
 export const metadata: Metadata = {
   title: "Regex Tester - Test Regular Expressions Online with Live Matching & Groups",

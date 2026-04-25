@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://devtoolbox.dev";
+const BASE_URL = "https://devtoolbox-ivory.vercel.app";
 
 const tools = [
   "/json-formatter",

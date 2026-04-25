@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { ToolPageLayout } from "@/components/ToolPageLayout";
 import { JsonLd } from "@/components/JsonLd";
 
-const SITE_URL = "https://devtoolbox.dev";
+const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
 const jsonFormatterSchema = {
   "@context": "https://schema.org",
