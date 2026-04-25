@@ -1,5 +1,5 @@
 import { locales, defaultLocale, type Locale, getDictionary } from "@/i18n/dictionaries";
-import Base64Client from "@/app/base64/page";
+import { Base64Tool } from "@/components/tools/Base64Tool";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -19,6 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function Base64LangPage({ params }: { params: Promise<{ lang: string }> }) {
-  return <Base64Client />;
+export default async function Base64LangPage() {
+  return <Base64Tool />;
 }

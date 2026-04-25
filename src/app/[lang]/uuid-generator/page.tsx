@@ -1,5 +1,5 @@
 import { locales, defaultLocale, type Locale, getDictionary } from "@/i18n/dictionaries";
-import UuidGeneratorClient from "@/app/uuid-generator/page";
+import { UuidGenerator } from "@/components/tools/UuidGenerator";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -19,6 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function UuidGeneratorLangPage({ params }: { params: Promise<{ lang: string }> }) {
-  return <UuidGeneratorClient />;
+export default async function UuidGeneratorLangPage() {
+  return <UuidGenerator />;
 }

@@ -1,5 +1,5 @@
 import { locales, defaultLocale, type Locale, getDictionary } from "@/i18n/dictionaries";
-import CronGeneratorClient from "@/app/cron-generator/page";
+import { CronGenerator } from "@/components/tools/CronGenerator";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -19,6 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function CronGeneratorLangPage({ params }: { params: Promise<{ lang: string }> }) {
-  return <CronGeneratorClient />;
+export default async function CronGeneratorLangPage() {
+  return <CronGenerator />;
 }

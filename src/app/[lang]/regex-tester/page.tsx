@@ -1,5 +1,5 @@
 import { locales, defaultLocale, type Locale, getDictionary } from "@/i18n/dictionaries";
-import RegexTesterClient from "@/app/regex-tester/page";
+import { RegexTester } from "@/components/tools/RegexTester";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -19,6 +19,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export default async function RegexTesterLangPage({ params }: { params: Promise<{ lang: string }> }) {
-  return <RegexTesterClient />;
+export default async function RegexTesterLangPage() {
+  return <RegexTester />;
 }

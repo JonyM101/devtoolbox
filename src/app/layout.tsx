@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import { defaultLocale } from "@/i18n/dictionaries";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,14 +93,6 @@ const websiteSchema = {
   url: SITE_URL,
   description:
     "Free online developer tools for everyday coding tasks. No signup, no tracking.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const softwareAppSchema = {
@@ -134,10 +122,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"
@@ -153,10 +138,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <GoogleAnalytics gaId="G-EH0SKY28M4" />
-        <Header locale={defaultLocale} />
-        <main className="flex-1">{children}</main>
-        <Footer locale={defaultLocale} />
+        {children}
       </body>
     </html>
   );
