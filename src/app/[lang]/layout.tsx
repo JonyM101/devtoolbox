@@ -3,6 +3,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { locales, defaultLocale, getDictionary, type Locale } from "@/i18n/dictionaries";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AdBanner } from "@/components/AdUnit";
 
 const SITE_URL = "https://devtoolbox-ivory.vercel.app";
 
@@ -59,7 +60,10 @@ export default async function LangLayout({
     <>
       <GoogleAnalytics gaId="G-EH0SKY28M4" />
       <Header locale={locale} />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1">
+        {children}
+        <AdBanner className="mt-8" />
+      </main>
       <Footer locale={locale} />
     </>
   );

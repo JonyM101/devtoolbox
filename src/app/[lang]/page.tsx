@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { locales, defaultLocale, getDictionary, type Locale } from "@/i18n/dictionaries";
+import { AdBanner, AdInArticle } from "@/components/AdUnit";
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ lang: locale }));
@@ -54,6 +55,9 @@ export default async function Home({
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Top Banner Ad */}
+      <AdBanner className="mb-8" />
+
       {/* Hero */}
       <section className="text-center mb-16">
         <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
@@ -91,6 +95,9 @@ export default async function Home({
           ))}
         </div>
       </section>
+
+      {/* In-content Ad */}
+      <AdInArticle className="my-8" />
 
       {/* Features */}
       <section className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
